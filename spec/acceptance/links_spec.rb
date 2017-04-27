@@ -13,6 +13,18 @@ RSpec.describe "Links", type: :feature do
     end
   end
 
+  describe "viewing links" do
+    it "displays page titles" do
+      Link.create!(url: "http://twitter.com")
+      Link.create!(url: "http://google.com")
+
+      visit links_path
+
+      expect(page).to have_content("Twitter")
+      expect(page).to have_content("Google")
+    end
+  end
+
   describe "creating link" do
     it "adds the link to the index" do
       visit links_path
